@@ -4,20 +4,20 @@ echo "Clone..."
 git clone --depth 1 https://github.com/armbian/build
 
 echo "Patch..."
-cp customize-image.sh armbian/build/userpatches/customize-image.sh
-cd armbian/build
+cp customize-image.sh build/userpatches/customize-image.sh
+cd build
 
-echo "Make sure halted..."
+echo "Ensure vagrant halted..."
 vagrant halt -f
 
-echo "Make sure destroyed..."
+echo "Ensure vagrant destroyed..."
 vagrant destroy -f
 
 echo "Build..."
 vagrant up && \
 vagrant ssh -c \
 'cd armbian && \
-sudo ./compile.sh \
+./compile.sh \
 BRANCH=default \
 BOARD=orangepizero \
 KERNEL_ONLY=no \
@@ -28,8 +28,7 @@ PROGRESS_DISPLAY=plain'
 
 for f in $(ls output/images/*)
 do
-	NAME=${f}
-	NEWNAME=$(echo $NAME | sed -e 's/Armbian/Octopio/')
-	mv $NAME $NEWNAME
+        NAME=${f}
+        NEWNAME=$(echo $NAME | sed -e 's/Armbian/Octopio/')
+        mv $NAME $NEWNAME
 done
-

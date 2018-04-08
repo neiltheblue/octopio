@@ -16,6 +16,8 @@ LINUXFAMILY=$2
 BOARD=$3
 BUILD_DESKTOP=$4
 
+echo "Install Octoprint"
+
 pass=$(perl -e 'print crypt($ARGV[0], "password")' "orange")
 useradd -m -p $pass -G tty,dialout pi
 cd /home/pi
@@ -28,9 +30,9 @@ su  pi -c './venv/bin/pip install pip --upgrade'
 su  pi -c './venv/bin/python setup.py install'
 su  pi -c 'mkdir /home/pi/.octoprint'
 cp scripts/octoprint.init /etc/init.d/octoprint
-echo "BASEDIR=/home/pi/.octoprint" >> /etc/init.d/octoprint
-echo "DAEMON=/home/pi/OctoPrint/venv/bin/octoprint" >> /etc/init.d/octoprint
-echo "CONFIGFILE=/home/pi/.octoprint/config.yaml" >> /etc/init.d/octoprint
 chmod +x /etc/init.d/octoprint
-cp scripts/octoprint.default /etc/default/octoprint
+sudo cp scripts/octoprint.default /etc/default/octoprint
+echo "BASEDIR=/home/pi/.octoprint" >> /etc/default/octoprint
+echo "DAEMON=/home/pi/OctoPrint/venv/bin/octoprint" >> /etc/default/octoprint
+echo "CONFIGFILE=/home/pi/.octoprint/config.yaml" >> /etc/default/octoprint
 update-rc.d octoprint defaults
