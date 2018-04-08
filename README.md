@@ -1,6 +1,6 @@
 # Octopio
 
-Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, based on Armbian!
+Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, using on [Armbian](https://www.armbian.com/)!
 
 # Burn image
 
@@ -91,6 +91,12 @@ nmtui
 ```
 
 ## Connect
+
+To acces Octoprint using a web browser connect to:
+
+```
+http://<ip_address>:5000
+```
 
 # Image build process
 
