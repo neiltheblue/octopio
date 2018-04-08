@@ -127,8 +127,9 @@ cd armbian
 
 # Automated build
 
-This script will automate the process:
+This script will automate the process if you have [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
 
 ```
+sudo apt install virtualbox vagrant
 ./build_octopio.sh
 ```
