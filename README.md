@@ -92,6 +92,12 @@ nmtui
 
 ## Connect
 
+To acces Octoprint using a web browser connect to:
+
+```
+http://<ip_address>:5000
+```
+
 # Image build process
 
 If you would like to build or customise the image. First check out the armbian repostory:
