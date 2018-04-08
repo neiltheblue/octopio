@@ -1,6 +1,6 @@
 # Octopio
 
-Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, based on Armbian!
+Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, using on [Armbian](https://www.armbian.com/)!
 
 # Burn image
 
