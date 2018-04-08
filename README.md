@@ -68,7 +68,9 @@ ssh root@<ip address>
 
 ### Login
 
-One you have a serial or remote connection, the login as **root**. Default password is **1234**. You will be promted to chagne the password and create a new user. Any new use is fine apart from *pi* which already exists.
+Once you have a serial or remote connection, you can login as **root**, default password is **1234**. You will be promted to change the password and create a new user. Any new use is fine apart from *pi* which already exists.
+
+The user for octoprint is user/pass **pi**/**orange**
 
 ## Update network
 
