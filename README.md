@@ -26,7 +26,7 @@ Once you have the sd card ready, just pop it in the board and power up. If booti
 
 I find this the best way to connect to the new device.
 
-Power the device with a USB lead connected to the PC, with a quality cable using a powered USB port. Once booted (red LED flashing) there should be a new serial device available.
+Power the device with a USB lead connected to the PC, with a quality cable using a powered USB port. Once booted there should be a new serial device available.
 
 #### Linux
 
