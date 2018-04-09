@@ -54,9 +54,19 @@ Then in the connection windows select serial connection and choose the new COM p
 
 ### Remote connection
 
-If you want to connect via the network with a DHCP server available, just pop in the RJ45 network connection.
+If you want to connect via the network with a DHCP server available, just pop in the RJ45 network connection. The find the IP address with one of these options.
 
-Then install Angry IP scanner from [here](http://angryip.org/). 
+#### Arp
+
+For linux run this command to find the name and ip address of the device:
+
+```
+arp && arp -n
+```
+
+#### Angry IP scanner
+
+Install Angry IP scanner from [here](http://angryip.org/). 
 
 Run Angry IP Scanner and enter the range for you network e.g. 192.168.1.0-192.168.1.255 and run a scan. 
 
