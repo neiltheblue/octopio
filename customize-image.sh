@@ -37,6 +37,7 @@ su  pi -c 'mkdir /home/pi/.octoprint'
 
 # configure install
 cat << EOF >> /home/pi/.octoprint/config.yaml
+server:
   commands:
     serverRestartCommand: sudo service octoprint restart
     systemRestartCommand: sudo shutdown -r now
@@ -60,9 +61,9 @@ cd mjpg-streamer/mjpg-streamer-experimental
 su  pi -c 'export LD_LIBRARY_PATH=. && make'
 
 cat << EOF >> /home/pi/.octoprint/config.yaml
-  webcam:
-    stream: http://<server.IP>:8080/?action=stream
-    snapshot: http://127.0.0.1:8080/?action=snapshot
-    ffmpeg: /usr/bin/avconv
+webcam:
+  stream: http://<server.IP>:8080/?action=stream
+  snapshot: http://127.0.0.1:8080/?action=snapshot
+  ffmpeg: /usr/bin/avconv
 EOF
 chown  pi:pi /home/pi/.octoprint/config.yaml
