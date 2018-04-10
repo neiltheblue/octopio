@@ -137,7 +137,13 @@ cd armbian
 
 # Automated build
 
-This script will automate the process if you have [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/).
+This script will automate the process if you have [VirtualBox](https://www.virtualbox.org/) and [Vagrant](https://www.vagrantup.com/). It will also require this plugin:
+
+```
+vagrant plugin install vagrant-disksize
+```
+
+build:
 
 ```
 sudo apt install virtualbox vagrant
