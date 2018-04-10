@@ -16,10 +16,15 @@ LINUXFAMILY=$2
 BOARD=$3
 BUILD_DESKTOP=$4
 
-echo "Install Octoprint"
-
+# set user
 pass=$(perl -e 'print crypt($ARGV[0], "password")' "orange")
-useradd -m -p $pass -G tty,dialout pi
+useradd -m -p $pass -G tty,dialout,sudo,video pi
+echo "pi ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_pi-nopasswd
+echo "pi ALL=NOPASSWD: /sbin/service" > /etc/sudoers.d/octoprint-service
+echo "pi ALL=NOPASSWD: /sbin/shutdown" > /etc/sudoers.d/octoprint-shutdown
+chmod 440 /etc/sudoers.d/*
+
+# install octoprint
 cd /home/pi
 apt-get -y update
 apt-get -y install python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential
@@ -29,6 +34,16 @@ su  pi -c 'python -m virtualenv venv'
 su  pi -c './venv/bin/pip install pip --upgrade'
 su  pi -c './venv/bin/python setup.py install'
 su  pi -c 'mkdir /home/pi/.octoprint'
+
+# configure install
+cat << EOF >> /home/pi/.octoprint/config.yaml
+  commands:
+    serverRestartCommand: sudo service octoprint restart
+    systemRestartCommand: sudo shutdown -r now
+    systemShutdownCommand: sudo shutdown -h now
+EOF
+
+# install startup scripts
 cp scripts/octoprint.init /etc/init.d/octoprint
 chmod +x /etc/init.d/octoprint
 sudo cp scripts/octoprint.default /etc/default/octoprint
@@ -36,3 +51,18 @@ echo "BASEDIR=/home/pi/.octoprint" >> /etc/default/octoprint
 echo "DAEMON=/home/pi/OctoPrint/venv/bin/octoprint" >> /etc/default/octoprint
 echo "CONFIGFILE=/home/pi/.octoprint/config.yaml" >> /etc/default/octoprint
 update-rc.d octoprint defaults
+
+# build webcam support
+cd /home/pi
+apt-get -y install subversion libjpeg62-turbo-dev imagemagick libav-tools libv4l-dev cmake
+su - pi -c 'git clone https://github.com/jacksonliam/mjpg-streamer.git'
+cd mjpg-streamer/mjpg-streamer-experimental
+su  pi -c 'export LD_LIBRARY_PATH=. && make'
+
+cat << EOF >> /home/pi/.octoprint/config.yaml
+webcam:
+  stream: http://<server.IP>:8080/?action=stream
+  snapshot: http://127.0.0.1:8080/?action=snapshot
+  ffmpeg: /usr/bin/avconv
+EOF
+chown  pi:pi /home/pi/.octoprint/config.yaml

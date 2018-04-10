@@ -18,6 +18,7 @@ vagrant up && \
 vagrant ssh -c \
 'cd armbian && \
 ./compile.sh \
+CLEAN_LEVEL="make,debs,images" \
 BRANCH=default \
 BOARD=orangepizero \
 KERNEL_ONLY=no \
