@@ -7,6 +7,7 @@ git clone --depth 1 https://github.com/armbian/build
 
 echo "Patch..."
 cp customize-image.sh build/userpatches/customize-image.sh
+[ -e Vagrant.custom ] && echo "Copy custom Vagrant file" && cp Vagrant.custom build/Vagrant
 cd build
 
 echo "Ensure vagrant halted..."
