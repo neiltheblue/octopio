@@ -2,7 +2,10 @@
 
 Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, using on [Armbian](https://www.armbian.com/)!
 
-+ Now includes mjpg_streamer
+#### TODO
++ Automate webcam support
++ Support Orange Pi Zero 2+
+
 
 # Burn image
 
@@ -80,28 +83,28 @@ ssh root@<ip address>
 
 ### Login
 
-Once you have a serial or remote connection, you can login as **root**, default password is **1234**. You will be promted to change the password and create a new user. Any new use is fine apart from *pi* which already exists.
+Once you have a serial or remote connection, you can login as **pi**, default password is **orange**.
 
-The user for octoprint is user/pass **pi**/**orange**
+The root for octoprint is user/pass **root**/**1234**. On first login you will be promted to change the password and create a new user. 
 
 ## Update network
 
 The OrangePIZero is great as it has buit in wi-fi, to connect to you network using the UI enter:
 
 ```
-nmtui-connect
+sudo nmtui-connect
 ```
 
 or for the command line, better with a serial connection use:
 
 ```
-nmcli device wifi connect <sid-name> password <wireless-password>
+sudo nmcli device wifi connect <sid-name> password <wireless-password>
 ```
 
 For any other easy network setup, such as setting a static ip address use:
 
 ```
-nmtui
+sudo nmtui
 ```
 
 ## Connect
