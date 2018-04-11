@@ -18,7 +18,7 @@ BUILD_DESKTOP=$4
 
 # set user
 pass=$(perl -e 'print crypt($ARGV[0], "password")' "orange")
-useradd -m -p $pass -G tty,dialout,sudo,video pi
+useradd -m -p $pass -G tty,dialout,sudo,video -shell /bin/bash pi
 echo "pi ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_pi-nopasswd
 echo "pi ALL=NOPASSWD: /sbin/service" > /etc/sudoers.d/octoprint-service
 echo "pi ALL=NOPASSWD: /sbin/shutdown" > /etc/sudoers.d/octoprint-shutdown
@@ -27,7 +27,7 @@ chmod 440 /etc/sudoers.d/*
 # install octoprint
 cd /home/pi
 apt-get -y update
-apt-get -y install python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential
+apt-get -y install python-pip python-dev python-setuptools python-virtualenv git libyaml-dev build-essential avahi-daemon
 su - pi -c 'git clone https://github.com/foosel/OctoPrint.git'
 cd OctoPrint
 su  pi -c 'python -m virtualenv venv'
@@ -42,6 +42,15 @@ server:
     serverRestartCommand: sudo service octoprint restart
     systemRestartCommand: sudo shutdown -r now
     systemShutdownCommand: sudo shutdown -h now
+  actions:
+   - action: streamon
+     command: /home/pi/scripts/webcam start
+     confirm: false
+     name: Start video stream
+   - action: streamoff
+     command: /home/pi/scripts/webcam stop
+     confirm: false
+     name: Stop video stream
 EOF
 
 # install startup scripts
@@ -67,3 +76,9 @@ cat << EOF >> /home/pi/.octoprint/config.yaml
 #  ffmpeg: /usr/bin/avconv
 EOF
 chown  pi:pi /home/pi/.octoprint/config.yaml
+
+# overlay files
+cp -r /tmp/overlay/* /
+chown pi:pi /home/pi/scripts/*
+chmod +x /home/pi/scripts/*
+
