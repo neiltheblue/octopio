@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VERSION=$(cat ../version)
+VERSION=$(cat version)
 
 echo "Clone..."
 git clone --depth 1 https://github.com/armbian/build
