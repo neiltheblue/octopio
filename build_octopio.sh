@@ -1,5 +1,7 @@
 #!/bin/bash
 
+VERSION=$(cat ../version)
+
 echo "Clone..."
 git clone --depth 1 https://github.com/armbian/build
 
@@ -30,6 +32,6 @@ PROGRESS_DISPLAY=plain'
 for f in $(ls output/images/*)
 do
         NAME=${f}
-        NEWNAME=$(echo $NAME | sed -e 's/Armbian/Octopio/')
+        NEWNAME=$(echo $NAME | sed -e "s/Armbian/Octopio-${VERSION}/")
         mv $NAME $NEWNAME
 done
