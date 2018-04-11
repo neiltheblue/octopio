@@ -1,6 +1,6 @@
 # Octopio
 
-Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, using on [Armbian](https://www.armbian.com/)!
+Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, running [Armbian](https://www.armbian.com/)!
 
 #### TODO
 + Automate webcam support
@@ -25,7 +25,7 @@ How to get it working...
 
 ## Boot image
 
-Once you have the sd card ready, just pop it in the board and power up. If booting for the first time it may be better to connected to this to the USB port on a PC.
+Once you have the sd card ready, just pop it in the board and power up. If booting for the first time it may be better to connected to this to the USB port on a PC. The first boot can also take a few minutes so be patient.
 
 ### Serial connection
 
