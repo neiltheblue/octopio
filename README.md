@@ -3,7 +3,7 @@
 Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, running [Armbian](https://www.armbian.com/)!
 
 #### TODO
-+ Automate webcam support
++ Automate webcam support 
 + Support Orange Pi Zero 2+
 
 
@@ -105,6 +105,12 @@ For any other easy network setup, such as setting a static ip address use:
 
 ```
 sudo nmtui
+```
+
+You can then see your IP address with:
+
+```
+sudo ifconfig
 ```
 
 ## Connect
