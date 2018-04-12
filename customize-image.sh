@@ -11,14 +11,16 @@
 # NOTE: If you want to transfer files between chroot and host
 # userpatches/overlay directory on host is bind-mounted to /tmp/overlay in chroot
 
+echo "### Starting octopio ###"
+
 RELEASE=$1
 LINUXFAMILY=$2
 BOARD=$3
 BUILD_DESKTOP=$4
 
 # set user
-pass=$(perl -e 'print crypt($ARGV[0], "password")' "orange")
-useradd -m -p $pass -G tty,dialout,sudo,video --shell /bin/bash pi
+useradd -m -G tty,dialout,sudo,video --shell /bin/bash pi
+echo -e 'orange\norange\n' | passwd pi
 echo "pi ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/010_pi-nopasswd
 echo "pi ALL=NOPASSWD: /sbin/service" > /etc/sudoers.d/octoprint-service
 echo "pi ALL=NOPASSWD: /sbin/shutdown" > /etc/sudoers.d/octoprint-shutdown
