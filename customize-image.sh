@@ -24,6 +24,10 @@ echo "pi ALL=NOPASSWD: /sbin/service" > /etc/sudoers.d/octoprint-service
 echo "pi ALL=NOPASSWD: /sbin/shutdown" > /etc/sudoers.d/octoprint-shutdown
 chmod 440 /etc/sudoers.d/*
 
+# set host
+echo 'octopio' > /etc/hostname
+chmod a+r /etc/hostname
+
 # install octoprint
 cd /home/pi
 apt-get -y update

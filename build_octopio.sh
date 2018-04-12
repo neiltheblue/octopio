@@ -33,5 +33,6 @@ for f in $(ls output/images/*)
 do
         NAME=${f}
         NEWNAME=$(echo $NAME | sed -e "s/Armbian/Octopio-${VERSION}/")
-        mv $NAME $NEWNAME
+        mv ${NAME} ${NEWNAME}
+	zip ${NEWNAME}.zip ${NEWNAME}
 done
