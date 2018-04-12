@@ -29,7 +29,7 @@ KERNEL_CONFIGURE=no \
 BUILD_DESKTOP=no \
 PROGRESS_DISPLAY=plain'
 
-for f in $(ls output/images/*)
+for f in $(ls output/images/Armbian*)
 do
         NAME=${f}
         NEWNAME=$(echo $NAME | sed -e "s/Armbian/Octopio-${VERSION}/")
