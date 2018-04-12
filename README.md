@@ -9,7 +9,7 @@ Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, running [Arm
 
 # Burn image
 
-This build process is pretty simple but slow, you can find a prebuild image [here](https://www.dropbox.com/s/66o0hm0vbigvwdd/Octopio_5.41_Orangepizero_Debian_jessie_default_3.4.113.img?dl=0):
+This build process is pretty simple but slow, you can find a prebuild image [here](https://www.dropbox.com/sh/vc8ydvehlyvwwn6/AAA0l0LS3Q8bafwT6lLeMuRMa?dl=0):
 
 To burn the image with linux use:
 
