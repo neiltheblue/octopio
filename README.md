@@ -3,9 +3,13 @@
 Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, running [Armbian](https://www.armbian.com/)!
 
 #### TODO
-+ Automate webcam support 
 + Support Orange Pi Zero 2+
 
+### 0.2
+Added webcam support
+
+### 0.1
+Basic functionality working
 
 # Burn image
 
