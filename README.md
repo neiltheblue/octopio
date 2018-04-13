@@ -94,7 +94,7 @@ The root for octoprint is user/pass **root**/**1234**. On first login you will b
 
 ## Update network
 
-The OrangePIZero is great as it has buit in wi-fi, to connect to you network using the UI enter:
+The OrangePIZero is great as it has buit in wi-fi, to connect to your network using the UI enter:
 
 ```
 sudo nmtui-connect
