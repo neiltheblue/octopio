@@ -78,8 +78,9 @@ Run Angry IP Scanner and enter the range for you network e.g. 192.168.1.0-192.16
 When it is ready you should see an entry for *octopio*, or a new device with port 22 available. Note the ip address and connect with:
 
 ```
-ssh root@<ip address>
+ssh pi@<ip address>
 ```
+or use putty for Windows users.
 
 ### Login
 
