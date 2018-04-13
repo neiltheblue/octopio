@@ -26,6 +26,10 @@ echo "pi ALL=NOPASSWD: /sbin/service" > /etc/sudoers.d/octoprint-service
 echo "pi ALL=NOPASSWD: /sbin/shutdown" > /etc/sudoers.d/octoprint-shutdown
 chmod 440 /etc/sudoers.d/*
 
+# set host
+echo 'octopio' > /etc/hostname
+chmod a+r /etc/hostname
+
 # install octoprint
 cd /home/pi
 apt-get -y update
@@ -44,7 +48,13 @@ server:
     serverRestartCommand: sudo service octoprint restart
     systemRestartCommand: sudo shutdown -r now
     systemShutdownCommand: sudo shutdown -h now
+webcam:
+  stream: http://<server.IP>:8080/?action=stream
+  snapshot: http://127.0.0.1:8080/?action=snapshot
+  ffmpeg: /usr/bin/avconv
+
 EOF
+chown  pi:pi /home/pi/.octoprint/config.yaml
 
 # install startup scripts
 cp scripts/octoprint.init /etc/init.d/octoprint
@@ -61,11 +71,15 @@ apt-get -y install subversion libjpeg62-turbo-dev imagemagick libav-tools libv4l
 su - pi -c 'git clone https://github.com/jacksonliam/mjpg-streamer.git'
 cd mjpg-streamer/mjpg-streamer-experimental
 su  pi -c 'export LD_LIBRARY_PATH=. && make'
+mkdir /home/pi/scripts
+cp /tmp/overlay/webcamDaemon /home/pi/scripts/webcamDaemon
+chown pi:pi /home/pi/scripts/webcamDaemon
+chmod +x /home/pi/scripts/webcamDaemon
+cp /tmp/overlay/webcam /etc/init.d/webcam
+chmod +x /etc/init.d/webcam
+update-rc.d webcam defaults
+cp /tmp/overlay/webcam.txt /home/pi/webcam.txt
+chown pi:pi /home/pi/webcam.txt
 
-cat << EOF >> /home/pi/.octoprint/config.yaml
-#webcam:
-#  stream: http://<server.IP>:8080/?action=stream
-#  snapshot: http://127.0.0.1:8080/?action=snapshot
-#  ffmpeg: /usr/bin/avconv
-EOF
-chown  pi:pi /home/pi/.octoprint/config.yaml
+# clean
+apt-get clean

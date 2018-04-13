@@ -1,0 +1,45 @@
+### Additional webcam devices known to cause problems with -f
+#
+# Apparently there a some devices out there that with the current
+# mjpg_streamer release do not support the -f parameter (for specifying
+# the capturing framerate) and will just refuse to output an image if it
+# is supplied.
+#
+# The webcam daemon will detect those devices by their USB Vendor and Product
+# ID and remove the -f parameter from the options provided to mjpg_streamer.
+#
+# By default, this is done for the following devices:
+#   Logitech C170 (046d:082b)
+#
+# Using the following option it is possible to add additional devices. If
+# your webcam happens to show above symptoms, try determining your cam's
+# vendor and product id via lsusb, activating the line below by removing # and
+# adding it as shown examplatory.
+#
+# If this fixes your problem, please report it back so we can include the device
+# out of the box.
+#
+#additional_brokenfps_usb_devices=("046d:082b" "aabb:ccdd")
+
+### Additional options to supply to MJPG Streamer for the RasPi Cam
+#
+# See https://github.com/foosel/OctoPrint/wiki/MJPG-Streamer-configuration
+# for available options
+#
+# Defaults to 10fps
+#
+#camera_raspi_options="-fps 10"
+
+### Configuration of camera HTTP output
+#
+# Usually you should NOT need to change this at all! Only touch if you
+# know what you are doing and what the parameters mean.
+#
+# Below settings are used in the mjpg-streamer call like this:
+#
+#   -o "output_http.so -w $camera_http_webroot $camera_http_options"
+#
+# Current working directory is the mjpg-streamer base directory.
+#
+#camera_http_webroot="./www-octopi"
+#camera_http_options="-n"

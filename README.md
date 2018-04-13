@@ -75,7 +75,7 @@ Install Angry IP scanner from [here](http://angryip.org/).
 
 Run Angry IP Scanner and enter the range for you network e.g. 192.168.1.0-192.168.1.255 and run a scan. 
 
-When it is ready you should see an entry for *orangepizero*. Note the ip address and connect with:
+When it is ready you should see an entry for *octopio*, or a new device with port 22 available. Note the ip address and connect with:
 
 ```
 ssh root@<ip address>
@@ -160,3 +160,25 @@ build:
 sudo apt install virtualbox vagrant
 ./build_octopio.sh
 ```
+
+# Webcam support
+
+Web cam support is built in, so if you connect a usb camera that is recognised by the kernel as /dev/video0 then there will be an attempt to make it available at:
+
+```
+http://<ip_address>:8080/?action=stream
+http://<ip_address>:8080/?action=snapshot
+```
+
+However I have found this to put quite a bit of strain on the system with my webcam (I don't have a pi camera yet to test with). The web cam configuration can be adjusted in the */home/pi/webcam.txt* file. Then in octoprint set the webcam values to:
+
+```
+stream: http://<ip address>:8080/?action=stream
+snapshot: http://127.0.0.1:8080/?action=snapshot
+ffmpeg: /usr/bin/avconv
+
+```
+
+Thanks to foosel where I lifted most of the information for this from [source](https://github.com/foosel/OctoPrint/wiki/Setup-on-a-Raspberry-Pi-running-Raspbian)
+
+Enjoy!
