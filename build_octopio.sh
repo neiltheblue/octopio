@@ -32,6 +32,7 @@ BUILD_DESKTOP=no \
 PROGRESS_DISPLAY=plain'
 
 cd output/images
+rm -f *.zip
 for f in $(ls Armbian*.img)
 do
         NAME=${f}
