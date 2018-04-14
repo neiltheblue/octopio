@@ -3,9 +3,13 @@
 Octoprint for the Orange Pi Zero - octoprint on a dirt cheap board, running [Armbian](https://www.armbian.com/)!
 
 #### TODO
-+ Automate webcam support 
 + Support Orange Pi Zero 2+
 
+### 0.2
+Added webcam support
+
+### 0.1
+Basic functionality working
 
 # Burn image
 
@@ -78,8 +82,9 @@ Run Angry IP Scanner and enter the range for you network e.g. 192.168.1.0-192.16
 When it is ready you should see an entry for *octopio*, or a new device with port 22 available. Note the ip address and connect with:
 
 ```
-ssh root@<ip address>
+ssh pi@<ip address>
 ```
+or use putty for Windows users.
 
 ### Login
 
@@ -89,7 +94,7 @@ The root for octoprint is user/pass **root**/**1234**. On first login you will b
 
 ## Update network
 
-The OrangePIZero is great as it has buit in wi-fi, to connect to you network using the UI enter:
+The OrangePIZero is great as it has buit in wi-fi, to connect to your network using the UI enter:
 
 ```
 sudo nmtui-connect
