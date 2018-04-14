@@ -44,7 +44,7 @@ On linux I see this as */dev/ttyACM0*. To connect to login to the device you can
 ```
 sudo apt install minicom
 
-minicom -b 115200 -D /dev/ttyACM0
+minicom -D /dev/ttyACM0
 ```
 
 or gtkterm
