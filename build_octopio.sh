@@ -29,7 +29,7 @@ KERNEL_ONLY=no \
 RELEASE=jessie \
 KERNEL_CONFIGURE=no \
 BUILD_DESKTOP=no \
-PROGRESS_DISPLAY=plain'
+PROGRESS_DISPLAY=plain' > build/octopio_build.log
 
 cd output/images
 rm -f *.zip
