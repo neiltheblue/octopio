@@ -25,7 +25,7 @@ vagrant up && \
 vagrant ssh -c \
 "cd armbian && \
 ./compile.sh \
-CLEAN_LEVEL='make,debs,images' \
+CLEAN_LEVEL='make,debs' \
 BRANCH=default \
 BOARD=${TARGET} \
 KERNEL_ONLY=no \
