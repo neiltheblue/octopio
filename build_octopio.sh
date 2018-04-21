@@ -1,6 +1,9 @@
 #!/bin/bash
 
 VERSION=$(cat version)
+TARGET=${1-'orangepizero'}
+
+echo "Build for ${VERSION}-[${TARGET}]"
 
 echo "Clone..."
 git clone --depth 1 https://github.com/armbian/build
@@ -20,23 +23,23 @@ vagrant destroy -f
 echo "Build..."
 vagrant up && \
 vagrant ssh -c \
-'cd armbian && \
+"cd armbian && \
 ./compile.sh \
-CLEAN_LEVEL="make,debs,images" \
+CLEAN_LEVEL='make,debs,images' \
 BRANCH=default \
-BOARD=orangepizero \
+BOARD=${TARGET} \
 KERNEL_ONLY=no \
 RELEASE=jessie \
 KERNEL_CONFIGURE=no \
 BUILD_DESKTOP=no \
-PROGRESS_DISPLAY=plain' > build/octopio_build.log
+PROGRESS_DISPLAY=plain" > octopio_build.log
 
 cd output/images
 rm -f *.zip
 for f in $(ls Armbian*.img)
 do
         NAME=${f}
-        NEWNAME=$(echo $NAME | sed -e "s/Armbian/Octopio-${VERSION}/")
+        NEWNAME=$(echo $NAME | sed -e "s/Armbian/Octopio-${VERSION}-[${TARGET}]-/")
         mv $NAME $NEWNAME
 	zip ${NEWNAME}.zip ${NEWNAME}
 done
