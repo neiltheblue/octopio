@@ -26,7 +26,7 @@ vagrant ssh -c \
 "cd armbian && \
 ./compile.sh \
 CLEAN_LEVEL='make,debs' \
-BRANCH=default \
+BRANCH=next \
 BOARD=${TARGET} \
 KERNEL_ONLY=no \
 RELEASE=jessie \
@@ -35,7 +35,6 @@ BUILD_DESKTOP=no \
 PROGRESS_DISPLAY=plain" > octopio_build.log
 
 cd output/images
-rm -f *.zip
 for f in $(ls Armbian*.img)
 do
         NAME=${f}
